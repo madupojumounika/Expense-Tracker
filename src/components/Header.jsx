@@ -9,7 +9,6 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Theme state
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
   });
@@ -17,7 +16,6 @@ const Header = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const isLoggedIn = !!currentUser;
 
-  // Apply theme
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -38,7 +36,6 @@ const Header = () => {
     navigate("/login");
   };
 
-  // Close dropdown when clicked outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -50,7 +47,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow transition-colors duration-300">
+    <header className="sticky top-0 z-50 bg-white/70 dark:bg-[#0b1220]/70 backdrop-blur-md shadow-sm transition-colors duration-300 border-b border-slate-200/50 dark:border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <h1 className="text-xl font-bold text-blue-600 dark:text-indigo-400">
           Expense Tracker
